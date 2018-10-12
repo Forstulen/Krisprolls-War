@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 0fcbe5338e6ea4b08ad8b9fdbb7f8c64
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Akko Rounded Std Medium Italic
+  fontNames:
+  - Akko Rounded Std Medium Italic
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

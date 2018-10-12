@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - GridBox
+  - Shot
+  - Break_Armor
+  - ExplosiveShot
+  - Enemy
+  - Poison
+  - Reward
+  - FX
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - 
+  - Enemy
+  - InteractableTile
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 160907297
+    locked: 0
+  - name: Foreground
+    uniqueID: 2361925475
+    locked: 0
+  - name: Ennemy
+    uniqueID: 3429663021
+    locked: 0
+  - name: MaskEnemies
+    uniqueID: 646543351
+    locked: 0
+  - name: Rewards
+    uniqueID: 3846232777
+    locked: 0
