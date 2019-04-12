@@ -100,7 +100,7 @@ namespace TowerDefense
                 {
                     GameObject go = _pooledEnemiesCollections[i].GetPooledObject();
 
-                    go.transform.parent = _parentGameObject.transform;
+                    go.transform.SetParent(_parentGameObject.transform, false);
                     go.SetActive(true);
 
                     RegisterEnemy(go);
@@ -111,7 +111,7 @@ namespace TowerDefense
             return null;
         }
 
-        public GameObject CreateEnemy(EnemyType type, FollowingPath path)
+        public GameObject CreateEnemy(EnemyType type, FollowingPath path, float reduceCoeff)
         {
             for (int i = 0; i < EnemyCollection.Length; ++i)
             {
@@ -121,12 +121,13 @@ namespace TowerDefense
                     Enemy enemy = go.GetComponent<Enemy>();
 
                     enemy.FollowingPath = path;
+                    enemy.ApplyPermanentSpeedMalus(reduceCoeff);
 
                     Vector3 vector = enemy.GetInitialPosition();
 
                     go.transform.position = new Vector3(vector.x + Random.Range(0.0f, _offset), vector.y + Random.Range(0.0f, _offset), 0.0f);
                     go.transform.rotation = Quaternion.identity;
-                    go.transform.parent = _parentGameObject.transform;
+                    go.transform.SetParent(_parentGameObject.transform, false);
                     go.SetActive(true);
 
                     RegisterEnemy(go);
@@ -137,12 +138,16 @@ namespace TowerDefense
             return null;
         }
 
-        public GameObject CreateEnemy(EnemyType type, Vector3 position, Quaternion identity)
+        public GameObject CreateEnemy(EnemyType type, Vector3 position, Quaternion identity, float reduceCoeff)
         {
             for (int i = 0; i < EnemyCollection.Length; ++i)
             {
                 if (EnemyCollection[i].EnemyType == type) {
                     GameObject go = _pooledEnemiesCollections[i].GetPooledObject();
+
+                    Enemy enemy = go.GetComponent<Enemy>();
+
+                    enemy.ApplyPermanentSpeedMalus(reduceCoeff);
 
                     go.transform.position = position;
                     go.transform.rotation = identity;

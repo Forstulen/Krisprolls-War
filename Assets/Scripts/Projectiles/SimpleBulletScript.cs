@@ -13,6 +13,7 @@ namespace TowerDefense
         public float _Speed = 0.9f;
         public float _Damage;
         public Animator _anim;
+        public ParticleSystem DirtExplosion;
 
         private Vector3 _lastPosition;
         private CircleCollider2D _collider2D;
@@ -54,6 +55,7 @@ namespace TowerDefense
         {
             if (collider.gameObject.tag == "Enemy")
             {
+                DirtExplosion.Play();
                 _anim.SetBool(ANIM_KEY, true);
             }
         }

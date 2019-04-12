@@ -11,6 +11,8 @@ namespace TowerDefense
 
         //Attributes
         private string          _levelName;
+        private float           _levelEnemyCoeff;
+        private Dictionary<TowerType, int> _towerLimitDict;
         private int             _currentWave;
         private WaveModel[]     _wavesArray;
         private int             _bestScore;
@@ -18,14 +20,16 @@ namespace TowerDefense
         private int             _life;
         private int             _goldsIni;
 
-        public LevelModel(WaveModel[] waves, string name, int life, int goldsIni) {
+        public LevelModel(WaveModel[] waves, string name, float levelEnemyCoeff, int life, int goldsIni, Dictionary<TowerType, int> limits = null) {
             _levelName = name;
+            _levelEnemyCoeff = levelEnemyCoeff;
             _wavesArray = waves;
             _life = life;
             _currentWave = 0;
             _bestScore = 0;
             _unlocked = false;
             _goldsIni = goldsIni;
+            _towerLimitDict = limits;
         }
 
         public void SetScore(int highScore) {
@@ -55,8 +59,20 @@ namespace TowerDefense
             return _life;
         }
 
+        public int GetTowerLimit(TowerType t) {
+            if (_towerLimitDict != null && _towerLimitDict.ContainsKey(t)) {
+                return _towerLimitDict[t];
+            }
+            return 2000;
+        }
+
         public string GetLevelName() {
             return _levelName;
+        }
+
+        public float GetLevelEnemyCoeff()
+        {
+            return _levelEnemyCoeff;
         }
 
         public int GetWavesNumber() {

@@ -9,6 +9,8 @@ public class ButtonManager : MonoBehaviour {
     public GameObject       MenuPanel;
     public GameObject       OptionsPanel;
     public GameObject       LevelPanel;
+    public GameObject       LorePanel;
+    public Button           LoreButton;
     public Image            OverlayImage;
 
     private bool            _displayOverlay;
@@ -22,6 +24,8 @@ public class ButtonManager : MonoBehaviour {
         _displayOverlay = true;
         MenuPanel.SetActive(false);
         LevelPanel.SetActive(true);
+        LorePanel.SetActive(false);
+        LoreButton.gameObject.SetActive(false);
     }
 
     public void BackBtn()
@@ -31,6 +35,8 @@ public class ButtonManager : MonoBehaviour {
         MenuPanel.SetActive(true);
         OptionsPanel.SetActive(false);
         LevelPanel.SetActive(false);
+        LorePanel.SetActive(false);
+        LoreButton.gameObject.SetActive(true);
     }
 
     public void OptionsBtn(string Play)
@@ -40,6 +46,19 @@ public class ButtonManager : MonoBehaviour {
         _displayOverlay = true;
         MenuPanel.SetActive(false);
         OptionsPanel.SetActive(true);
+        LorePanel.SetActive(false);
+        LoreButton.gameObject.SetActive(false);
+    }
+
+    public void LoreBtn()
+    {
+        _time = 0.0f;
+        _displayOverlay = false;
+        MenuPanel.SetActive(false);
+        OptionsPanel.SetActive(false);
+        LevelPanel.SetActive(false);
+        LorePanel.SetActive(true);
+        LoreButton.gameObject.SetActive(false);
     }
 
     public void ExitBtn (string Exit)

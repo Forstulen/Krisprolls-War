@@ -37,16 +37,20 @@ namespace TowerDefense
             this._activeAudioList = new List<ClipInfo>();
             this._activeVoiceOver = null;
             this._activeMusic = null;
+
+            UserPropertiesModel.Instance.OnPropertiesLoaded += LoadValues;
         }
+
+        private void LoadValues(UserPropertiesModel script, System.EventArgs arg) {
+            this.MusicVolume = UserPropertiesModel.Instance.MusicVolume;
+            this.SoundsVolume = UserPropertiesModel.Instance.SoundVolume;
+        } 
 
         void Start()
         {
             this._volumeMod = 1;
             this._volumeMin = 0.2f;
             this._VOfade = false;
-
-            this.MusicVolume = 1.0f;//UserPropertiesModel.Instance.musicActivated;
-            this.SoundsVolume = 0.70f;//UserPropertiesModel.Instance.musicActivated;
         }
 
         void Update()
@@ -59,46 +63,46 @@ namespace TowerDefense
             {
                 this._volumeMod += 0.1f;
             }
-            //this.UpdateActiveAudio();
+            this.UpdateActiveAudio();
         }
 
-        public void AdjustVolume()
-        {
-            float value = 0.0f;
+        public void AdjustSoundVolume(float value) {
+            UserPropertiesModel.Instance.SoundVolume = value;
 
-            if (this.MusicVolume == 0.0f)
-            {
-                value = 1.0f;
-            }
+            this.SoundsVolume = value;
+
+            UpdateSounds();
+        }
+
+        public void AdjustMusicVolume(float value) {
+            UserPropertiesModel.Instance.MusicVolume = value;
+
+            this.MusicVolume = value;
 
             if (this._activeMusic != null)
             {
-                this._activeMusic.volume = value;
+                this._activeMusic.volume = this.MusicVolume;
             }
-            UserPropertiesModel.Instance.musicActivated = (int)value;
-
-            this.MusicVolume = 1.0f;//UserPropertiesModel.Instance.musicActivated;
-            this.SoundsVolume = 0.70f;//UserPropertiesModel.Instance.musicActivated;
         }
 
-        /*public void EnableSounds() {
-            UserPropertiesModel.Instance.musicActivated = 1;
+        //public void EnableSounds() {
+        //    UserPropertiesModel.Instance.musicActivated = 1;
 
-            this.MusicVolume = UserPropertiesModel.Instance.musicActivated;
-            this.SoundsVolume = UserPropertiesModel.Instance.musicActivated;
-        }
+        //    this.MusicVolume = UserPropertiesModel.Instance.musicActivated;
+        //    this.SoundsVolume = UserPropertiesModel.Instance.musicActivated;
+        //}
 
-        public void DisableSounds() {
-            UserPropertiesModel.Instance.musicActivated = 0;
+        //public void DisableSounds() {
+        //    UserPropertiesModel.Instance.musicActivated = 0;
 
-            this.MusicVolume = UserPropertiesModel.Instance.musicActivated;
-            this.SoundsVolume = UserPropertiesModel.Instance.musicActivated;
-        }*/
+        //    this.MusicVolume = UserPropertiesModel.Instance.musicActivated;
+        //    this.SoundsVolume = UserPropertiesModel.Instance.musicActivated;
+        //}
 
         public void UpdateSounds()
         {
-            this.MusicVolume = 1.0f;//UserPropertiesModel.Instance.musicActivated;
-            this.SoundsVolume = 0.70f;//UserPropertiesModel.Instance.musicActivated;
+            this.MusicVolume = UserPropertiesModel.Instance.MusicVolume;
+            this.SoundsVolume = UserPropertiesModel.Instance.SoundVolume;
 
             List<ClipInfo> toRemove = new List<ClipInfo>();
             try
@@ -139,9 +143,9 @@ namespace TowerDefense
             source.volume = volume;
         }
 
-        public AudioSource PlayVoiceOver(AudioClip voiceOver, float volume)
+        public AudioSource PlayVoiceOver(AudioClip voiceOver)
         {
-            AudioSource source = Play(voiceOver, transform, volume);
+            AudioSource source = Play(voiceOver, transform);
 
             this._VOfade = true;
             this._activeVoiceOver = source;
@@ -150,22 +154,24 @@ namespace TowerDefense
             return source;
         }
 
-        public AudioSource PlayMusic(AudioClip music, float volume)
+        public AudioSource PlayMusic(AudioClip music, float multiplier = 1.0f)
         {
             this.CurrentMusic = music;
-            this._activeMusic = PlayLoop(music, transform, volume);
+            this._activeMusic = PlayLoop(music, transform, false, true);
             this._activeMusic.priority = 0;
+
+            this._activeMusic.volume = this.MusicVolume * multiplier;
 
             return this._activeMusic;
         }
 
-        public IEnumerator PlayMusicWithFadeIn(AudioClip music, float volume)
+        public IEnumerator PlayMusicWithFadeIn(AudioClip music, float multiplier = 1.0f)
         {
             this.CurrentMusic = music;
-            this._activeMusic = PlayLoop(music, transform, 0.0f);
+            this._activeMusic = PlayLoop(music, transform, false, true);
             this._activeMusic.priority = 0;
 
-            while (this._activeMusic.volume < volume)
+            while (this._activeMusic.volume <  this.MusicVolume * multiplier)
             {
                 this._activeMusic.volume += 0.01f;
                 yield return new WaitForEndOfFrame();
@@ -174,18 +180,20 @@ namespace TowerDefense
 
         public IEnumerator PauseMusicWithFadeOut()
         {
-            while (this._activeMusic.volume > 0)
+            while (this._activeMusic && this._activeMusic.volume > 0)
             {
                 this._activeMusic.volume -= 0.05f;
                 yield return new WaitForEndOfFrame();
             }
-            this._activeMusic.Pause();
+            if (this._activeMusic)
+                this._activeMusic.Pause();
         }
 
         public IEnumerator UnPauseMusicWithFadeIn()
         {
-            this._activeMusic.Play();
-            while (this._activeMusic.volume < MusicVolume)
+            if (this._activeMusic)
+                this._activeMusic.Play();
+            while (this._activeMusic && this._activeMusic.volume < MusicVolume)
             {
                 this._activeMusic.volume += 0.05f;
                 yield return new WaitForEndOfFrame();
@@ -197,12 +205,12 @@ namespace TowerDefense
             StopSound(this._activeMusic);
         }
 
-        public IEnumerator FadeInMusic(AudioClip music, float volume)
+        public IEnumerator FadeInMusic(AudioClip music)
         {
             this.CurrentMusic = music;
             if (this._activeMusic == null)
             {
-                PlayMusic(music, volume);
+                PlayMusic(music);
             }
             else
             {
@@ -211,17 +219,17 @@ namespace TowerDefense
                     this._activeMusic.volume -= 0.05f;
                     yield return new WaitForEndOfFrame();
                 }
-                StartCoroutine(FadeOutMusic(music, volume));
+                StartCoroutine(FadeOutMusic(music));
             }
         }
 
-        private IEnumerator FadeOutMusic(AudioClip music, float volume)
+        private IEnumerator FadeOutMusic(AudioClip music)
         {
             StopSound(this._activeMusic);
             if (music)
             {
-                PlayMusic(music, 0.0f);
-                while (this._activeMusic.volume < volume)
+                PlayMusic(music);
+                while (this._activeMusic.volume < this.MusicVolume)
                 {
                     this._activeMusic.volume += 0.05f;
                     yield return new WaitForEndOfFrame();
@@ -229,33 +237,31 @@ namespace TowerDefense
             }
         }
 
-        public AudioSource Play(AudioClip clip, Vector3 soundOrigin, float volume)
+        public AudioSource Play(AudioClip clip, Vector3 soundOrigin, float multiplier = 1.0f)
         {
             if (clip == null) return null;
 
             GameObject soundLoc = new GameObject("Audio: " + clip.name);
             AudioSource source = soundLoc.AddComponent<AudioSource>();
 
-            Debug.Log(source);
-
             soundLoc.transform.position = soundOrigin;
-            this.SetSource(ref source, clip, volume);
-            this._activeAudioList.Add(new ClipInfo { source = source, defaultVolume = volume });
+            this.SetSource(ref source, clip, this.SoundsVolume * multiplier);
+            this._activeAudioList.Add(new ClipInfo { source = source, defaultVolume = this.SoundsVolume * multiplier });
 
             source.Play();
             Destroy(soundLoc, clip.length);
             return source;
         }
 
-        public AudioSource Play(AudioClip clip, Transform emitter, float volume)
+        public AudioSource Play(AudioClip clip, Transform emitter, float multiplier = 1.0f)
         {
-            AudioSource source = Play(clip, emitter.position, volume);
+            AudioSource source = Play(clip, emitter.position, multiplier);
 
             source.transform.parent = emitter;
             return source;
         }
 
-        public AudioSource PlayLoop(AudioClip loop, Transform emitter, float volume)
+        public AudioSource PlayLoop(AudioClip loop, Transform emitter, bool shouldBeTracked, bool music, float multiplier = 1.0f)
         {
             if (loop == null) return null;
 
@@ -265,11 +271,12 @@ namespace TowerDefense
             movingSoundLoc.transform.position = emitter.position;
             movingSoundLoc.transform.parent = emitter;
 
-            this.SetSource(ref source, loop, volume);
+            this.SetSource(ref source, loop, music ? this.MusicVolume : this.SoundsVolume);
             source.loop = true;
             source.Play();
 
-            this._activeAudioList.Add(new ClipInfo { source = source, defaultVolume = volume });
+            if (shouldBeTracked)
+                this._activeAudioList.Add(new ClipInfo { source = source, defaultVolume = (music ? this.MusicVolume : this.SoundsVolume) * multiplier });
             return source;
         }
 

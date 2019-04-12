@@ -5,11 +5,16 @@ using UnityEngine.UI;
 
 namespace TowerDefense
 {
-    public enum EnemyType {
+    public enum EnemyType
+    {
         LIGHT_ENEMY = 0,
         MEDIUM_ENEMY,
         HEAVY_ENEMY,
         HEAVY_KNIGHT_ENEMY,
+        SPEED_ENEMY,
+        HEAVY_BERSERK_ENEMY,
+        FROST_ENEMY,
+        POISON_KNIGHT,
         NONE
     }
 
@@ -17,46 +22,56 @@ namespace TowerDefense
     [RequireComponent(typeof(Animator))] 
     public abstract class Enemy : FollowingWaypointScript
     {
-        string _Name;
+        protected string _Name;
         [SerializeField]
-        int _Life;
+        protected int _Life;
         [SerializeField]
-        float _Armor;
-        int _Resistance;
+        protected float _Armor;
+        protected int _Resistance;
         [SerializeField]
-        float _Speed;
+        protected float _Speed;
 
         public AudioClip DeathSound;
         //public AudioClip WalkSound;
         //public AudioClip SpawnSound;
 
-        public Slider    HealthBar;
+        public Slider       HealthBar;
+        public Animator     GoldAnimator;
+        public Text         GoldText;
+        public GameObject   BreakArmorObject;
+        public GameObject   FrostObject;
 
-        private AudioSource _walkingSource;
+        protected AudioSource _walkingSource;
 
-        private Animator _anim;
+        protected Animator _anim;
 
-        private int _Reward;
+        protected int _Reward;
 
-        private float _BrokeArmor;
+        protected float _BrokeArmor;
 
-        private float _DecreaseSpeed;
+        protected float _DecreaseSpeed;
 
-        private float _LifePoisonous;
+        protected float _speedMalus;
 
-        private SpriteRenderer _Renderer;
+        protected float _LifePoisonous;
+
+        protected SpriteRenderer _Renderer;
 
         protected EnemyType _Type;
 
-        private float _lastXPosition;
+        protected float _lastXPosition;
+
+        protected Color _savedColor;
 
         const string DEAD_ANIM_KEY = "isDead";
 
         //DO NOT TOUCH
-        int _SavedLife;
-        float _SavedArmor;
-        int _SavedResistance;
-        float _SavedSpeed;
+        protected int _SavedLife;
+        protected float _SavedArmor;
+        protected int _SavedResistance;
+        protected float _SavedSpeed;
+
+        private bool _hasMalus;
 
         public Enemy(string _Name, int _Life, float _Armor, int _Resistance, float _Speed, int _Reward) 
         {
@@ -73,6 +88,9 @@ namespace TowerDefense
             _SavedArmor = _Armor;
             _SavedResistance = _Resistance;
             _SavedSpeed = _Speed;
+            _speedMalus = 1.0f;
+
+            _hasMalus = false;
         }
 
         private void OnEnable()
@@ -84,7 +102,7 @@ namespace TowerDefense
             this._Life = _SavedLife;
             this._Armor = _SavedArmor;
             this._Resistance = _SavedResistance;
-            this._Speed = _SavedSpeed;
+            this._Speed = _SavedSpeed / _speedMalus;
             MovementSpeed = this._Speed;
 
             _DecreaseSpeed = 0.0f;
@@ -97,9 +115,13 @@ namespace TowerDefense
 
             if (_Renderer != null && _anim != null)
             {
-                _Renderer.color = Color.white;
+                _Renderer.color = _savedColor;
                 _anim.SetBool(DEAD_ANIM_KEY, false);
             }
+            GoldAnimator.SetBool(DEAD_ANIM_KEY, false);
+
+            BreakArmorObject.SetActive(false);
+            FrostObject.SetActive(false);
 
             _lastXPosition = transform.position.x;
         }
@@ -122,6 +144,8 @@ namespace TowerDefense
             base.Start();
             _Renderer = GetComponent<SpriteRenderer>();
             _anim = GetComponent<Animator>();
+
+            _savedColor = _Renderer.color;
         }
 
         public void OnTriggerEnter2D(Collider2D collider)
@@ -176,30 +200,28 @@ namespace TowerDefense
 
         public void PoisonDot(PoisonStruct s)
         {
-            _Renderer.color = Color.green;
             StartCoroutine(TickDuration(s));
         }
 
-        public void DecreaseSpeed(float percent)
+        public virtual void DecreaseSpeed(float percent)
         {
-            _Renderer.color = Color.blue;
+            FrostObject.SetActive(true);
             _DecreaseSpeed = _Speed * (percent / 100.0f);
             _Speed -= _DecreaseSpeed;
             MovementSpeed = _Speed;
         }
 
-        public void RestoreSpeed(float percent)
+        public virtual void RestoreSpeed(float percent)
         {
-            _Renderer.color = Color.white;
+            FrostObject.SetActive(false);
             _Speed += _DecreaseSpeed;
             _DecreaseSpeed = 0;
             MovementSpeed = _Speed;
         }
 
-        public void BreakArmor(float armor)
+        public virtual void BreakArmor(float armor)
         {
-
-            _Renderer.color = Color.black;
+            BreakArmorObject.SetActive(true);
             if (_Armor >1.0f)
             {
                 _BrokeArmor += armor;
@@ -210,9 +232,9 @@ namespace TowerDefense
             
         }
 
-        public void RestoreArmor(float armor)
+        public virtual void RestoreArmor(float armor)
         {
-            _Renderer.color = Color.white;
+            BreakArmorObject.SetActive(false);
             if (_Armor > 1.0f)
             {
                 _Armor += _BrokeArmor;
@@ -227,7 +249,19 @@ namespace TowerDefense
             return _Speed;
         }
 
-        public void TakeDamage(float damage)
+        public void ApplyPermanentSpeedMalus(float coeff) {
+            if (!_hasMalus)
+            {
+                _speedMalus = coeff;
+                _Speed /= _speedMalus;
+                MovementSpeed = _Speed;
+                _hasMalus = true;
+
+                transform.localScale = transform.localScale / coeff;
+            }
+        }
+
+        public virtual void TakeDamage(float damage)
         {
             FXManagerScript.Instance.CreateFX(new Vector3(transform.position.x, transform.position.y + 0.2f, 0.0f));
 
@@ -254,6 +288,7 @@ namespace TowerDefense
 
             HealthBar.value = 1.0f;
             HealthBar.gameObject.SetActive(true);
+            GoldText.transform.parent.gameObject.SetActive(true);
 
             //_walkingSource = AudioManagerScript.Instance.PlayLoop(WalkSound, transform, 0.1f);
 
@@ -266,9 +301,11 @@ namespace TowerDefense
 
         public void Die()
         {
+            GoldText.text = string.Format("+{0}", _Reward);
+            GoldAnimator.SetBool(DEAD_ANIM_KEY, true);
             _anim.SetBool(DEAD_ANIM_KEY, true);
 
-            AudioManagerScript.Instance.Play(DeathSound, Camera.main.transform, 0.25f);
+            AudioManagerScript.Instance.Play(DeathSound, Camera.main.transform);
 
             HealthBar.value = 0.0f;
             HealthBar.gameObject.SetActive(false);
@@ -282,7 +319,7 @@ namespace TowerDefense
             gameObject.SetActive(false);
         }
 
-        IEnumerator TickDuration(PoisonStruct s)
+        protected virtual IEnumerator TickDuration(PoisonStruct s)
 
         {
             float i = 0;
@@ -290,6 +327,8 @@ namespace TowerDefense
             {
                 _LifePoisonous = _Life * s.Damage / 100.0f;
                 _Life -= Mathf.RoundToInt(_LifePoisonous);
+
+                _Renderer.color = Color.Lerp(_savedColor, Color.green, Mathf.PingPong(Time.time, 1));
 
                 float value = (float)_Life / (float)_SavedLife;
 
@@ -299,7 +338,7 @@ namespace TowerDefense
 
                 i += s.TickProc;
             }
-            _Renderer.color = Color.white;
+            _Renderer.color = _savedColor;
 
         }
     }

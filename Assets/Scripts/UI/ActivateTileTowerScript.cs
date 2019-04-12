@@ -23,7 +23,8 @@ namespace TowerDefense
 
         public void Update()
         {
-            _towerButton.interactable = GameManagerScript.Instance.CanCreateTower(Type);
+            if (GameManagerScript.Instance.CanBeInteractive())
+                _towerButton.interactable = GameManagerScript.Instance.CanCreateTower(Type);
         }
     }
 }

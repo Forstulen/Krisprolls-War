@@ -11,6 +11,21 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1247583850059190}
   m_IsPrefabParent: 1
+--- !u!1 &1126443212283618
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4749892753844146}
+  m_Layer: 2
+  m_Name: 'Root '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1247583850059190
 GameObject:
   m_ObjectHideFlags: 0
@@ -22,7 +37,8 @@ GameObject:
   - component: {fileID: 212488407426602520}
   - component: {fileID: 58679405543765854}
   - component: {fileID: 114850263950826660}
-  m_Layer: 0
+  - component: {fileID: 114841262170149962}
+  m_Layer: 2
   m_Name: Tower_Poison
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4878091014934750}
   - component: {fileID: 212271460070970130}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,7 +70,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4795208988142996}
   - component: {fileID: 95140539252627350}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: DropBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +86,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4903339958439696}
   - component: {fileID: 212444694552416040}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Poisonous_Bullet
   m_TagString: Poison
   m_Icon: {fileID: 0}
@@ -86,7 +102,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4243869596129578}
   - component: {fileID: 212581022203180344}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +118,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4106150713236588}
   - component: {fileID: 212640543469691758}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: RangeSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,6 +137,7 @@ Transform:
   m_Children:
   - {fileID: 4795208988142996}
   - {fileID: 4106150713236588}
+  - {fileID: 4749892753844146}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -149,6 +166,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4795208988142996}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4749892753844146
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1126443212283618}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.09, y: -1.29, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4022707131344976}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4795208988142996
 Transform:
@@ -225,6 +255,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114841262170149962
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1247583850059190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63909d034b4094e488e76d0bc6143f71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RootTransform: {fileID: 4749892753844146}
+  Offset: {x: 0.4, y: 0, z: 0}
+  MaximumSize: {x: 0.8, y: 0.08, z: 0}
+  EmptyLevelSprite: {fileID: 21300000, guid: 3134dfb16e89d41f4b6c672a310a632d, type: 3}
+  FilledLevelSprite: {fileID: 21300000, guid: b19cf34f3a79445ebb0ee03e747d593f, type: 3}
+  SortingLayerName: Outline
+  SortingLayer: 10
 --- !u!114 &114850263950826660
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -237,9 +285,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsActive: 0
-  _DamageMin: 1
-  _DamageMax: 2
-  _Speed: 4
+  _DamageMin: 7
+  _DamageMax: 10
+  _Speed: 2.5
   _TowerLevel: 0
   _targetingType: 0
   _anim: {fileID: 95140539252627350}

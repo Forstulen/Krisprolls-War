@@ -14,6 +14,7 @@ namespace TowerDefense
         public float _Damage;
         public Animator _anim;
         public SpriteRenderer Shadow;
+        public ParticleSystem DirtExplosion;
         private float _RotationSpeed = -1;
 
         private const string ANIM_KEY = "isColliding";
@@ -49,6 +50,8 @@ namespace TowerDefense
 
                 if (transform.position == target)
                 {
+                    DirtExplosion.Play();
+
                     AudioManagerScript.Instance.Play(ExplosiveSound, Camera.main.transform, 0.75f);
 
                     _anim.SetBool(ANIM_KEY, true);
@@ -58,8 +61,6 @@ namespace TowerDefense
                     RaycastHit2D[] colliders = Physics2D.CircleCastAll(transform.position, 1.0f, Vector2.left, 0f, EnemyMask);
                     for (int q = 0; q < colliders.Length; q++)
                     {
-                        Debug.Log(colliders[q].collider.name);
-
                         if (colliders[q].collider.gameObject.tag == "Enemy")
                         {
                             Enemy e = colliders[q].collider.gameObject.GetComponent<Enemy>();

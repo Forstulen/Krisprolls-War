@@ -10,38 +10,46 @@ namespace TowerDefense
         const int _DAMAGEMIN = 40;
         const int _DAMAGEMAX = 80;
         const float _RANGE = 2.0f;
-        const float _SPEED = 4.0f;
+        const float _SPEED = 3.5f;
         public static int _COST = 100;
-
-        const TowerType _TowerType = TowerType.AOE;
 
         public DamageAoE() : base(_DAMAGEMIN, _DAMAGEMAX, _RANGE, _SPEED)
         {
+            _TowerType = TowerType.AOE;
         }
 
         public override void Action()
         {
             if (_Enemy != null && _ElapseTime >= this._Speed)
             {   
-                _ElapseTime = 0.0f;
 
-                _anim.SetBool("Fire", true);
+                if (!_Enemy.gameObject.activeSelf)
+                {
+                    Debug.Log("FORCE RESET FOR EMPTY TARGET");
+                    SelectTarget();
+                }
 
-                //_anim.speed = _Speed;
+                if (_Enemy != null) {
+                    _ElapseTime = 0.0f;
 
-                StartCoroutine(ReactivateAnimation());
+                    _anim.SetBool("Fire", true);
 
-                GameObject BulletGameObject = BulletManagerScript.Instance.CreateBullet(new Vector3(transform.position.x, transform.position.y + 0.75f, 0.0f), Quaternion.identity, BulletType.EXPLOSIVE_BULLET);
-                
-                ExplosiveBulletScript bulletScript = BulletGameObject.GetComponentInChildren<ExplosiveBulletScript>();
+                    _anim.speed = _anim.speed = _initialSpeed / _Speed;
 
-                bulletScript.target = _Enemy.position;
+                    StartCoroutine(ReactivateAnimation());
 
-                float alea = Random.Range(_DamageMin, _DamageMax);
+                    GameObject BulletGameObject = BulletManagerScript.Instance.CreateBullet(new Vector3(transform.position.x, transform.position.y + 0.75f, 0.0f), Quaternion.identity, BulletType.EXPLOSIVE_BULLET);
 
-                bulletScript._Damage = alea;
+                    ExplosiveBulletScript bulletScript = BulletGameObject.GetComponentInChildren<ExplosiveBulletScript>();
 
-                AudioManagerScript.Instance.Play(FireSound, transform, 0.5f);
+                    bulletScript.target = _Enemy.position;
+
+                    float alea = Random.Range(_DamageMin, _DamageMax);
+
+                    bulletScript._Damage = alea;
+
+                    AudioManagerScript.Instance.Play(FireSound, transform, 0.5f);
+                }
             }
             _ElapseTime += Time.deltaTime;
 
@@ -112,7 +120,36 @@ namespace TowerDefense
                     break;
             }
 
+            DisplayTowerLevelScript script = GetComponent<DisplayTowerLevelScript>();
+
+            if (script)
+                script.DisplayLevel();
+
             AudioManagerScript.Instance.Play(UpgradeSound, transform, 0.5f);
+        }
+
+        public override void DestroyTower()
+        {
+            base.DestroyTower();
+
+            _DamageMin = _DAMAGEMIN;
+            _DamageMax = _DAMAGEMAX;
+            _Range = _RANGE;
+            _Speed = _SPEED;
+            _CurrentPriceTower = _COST;
+            _TowerLevel = TowerLevel.LEVEL_1;
+            if (_Collider)
+                _Collider.radius = _Range;
+
+            DisplayTowerLevelScript script = GetComponent<DisplayTowerLevelScript>();
+
+            if (script)
+                script.DisplayLevel();
+        }
+
+        public override TowerLevel GetMaxLevel()
+        {
+            return TowerLevel.LEVEL_7;
         }
     }
 }

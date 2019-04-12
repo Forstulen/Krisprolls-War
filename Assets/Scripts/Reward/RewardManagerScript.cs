@@ -51,8 +51,6 @@ namespace TowerDefense
             gameObject.transform.position = position;
             gameObject.SetActive(true);
 
-            Debug.Log("create reward ");
-
             RewardScript script = gameObject.GetComponent<RewardScript>();
 
             script.Initialize(golds);

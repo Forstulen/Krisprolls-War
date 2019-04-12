@@ -14,10 +14,9 @@ namespace TowerDefense
        const float _SPEED = 0.0f;
         public static int _COST = 40;
 
-        const TowerType _TowerType = TowerType.FROST;
-
         public Frost() : base(_DAMAGEMIN,_DAMAGEMAX, _RANGE, _SPEED)
         {
+            _TowerType = TowerType.FROST;
         }
 
 
@@ -109,7 +108,36 @@ namespace TowerDefense
                     break;
             }
 
+            DisplayTowerLevelScript script = GetComponent<DisplayTowerLevelScript>();
+
+            if (script)
+                script.DisplayLevel();
+
             AudioManagerScript.Instance.Play(UpgradeSound, transform, 0.5f);
+        }
+
+        public override void DestroyTower()
+        {
+            base.DestroyTower();
+
+            _DamageMin = _DAMAGEMIN;
+            _DamageMax = _DAMAGEMAX;
+            _Range = _RANGE;
+            _Speed = _SPEED;
+            _CurrentPriceTower = _COST;
+            _TowerLevel = TowerLevel.LEVEL_1;
+            if (_Collider)
+                _Collider.radius = _Range;
+
+            DisplayTowerLevelScript script = GetComponent<DisplayTowerLevelScript>();
+
+            if (script)
+                script.DisplayLevel();
+        }
+
+        public override TowerLevel GetMaxLevel()
+        {
+            return TowerLevel.LEVEL_6;
         }
 
     }

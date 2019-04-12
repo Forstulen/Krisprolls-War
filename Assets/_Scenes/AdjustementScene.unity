@@ -401,6 +401,12 @@ MonoBehaviour:
   - EnemyType: 3
     EnemyPrefab: {fileID: 1662633986411792, guid: b45e341f0f13842dc93f688495c9694c,
       type: 2}
+  - EnemyType: 4
+    EnemyPrefab: {fileID: 1511577834109080, guid: 03c558581f14847cab03d7ed3a95cd11,
+      type: 2}
+  - EnemyType: 6
+    EnemyPrefab: {fileID: 1511577834109080, guid: e989307d7a9a94c2998a7abc35f43c28,
+      type: 2}
 --- !u!1 &29828579
 GameObject:
   m_ObjectHideFlags: 0
@@ -3148,18 +3154,11 @@ MonoBehaviour:
   WinMusic: {fileID: 8300000, guid: 9b1cde0c2a6be405ba097772a687b5ae, type: 3}
   LoseMusic: {fileID: 8300000, guid: 2135b07382ab043e3a8947ca810d9bfa, type: 3}
   LevelStatus: {fileID: 1374141688}
-  EnemyPanelArray:
-  - {fileID: 550310450}
-  - {fileID: 763007251}
-  - {fileID: 1827965790}
-  HorizontalLayoutArray:
-  - {fileID: 550310451}
-  - {fileID: 763007252}
-  - {fileID: 1827965791}
-  CountArray:
-  - {fileID: 1443640073}
-  - {fileID: 1951419629}
-  - {fileID: 1416736853}
+  VerticalLayout: {fileID: 0}
+  HorizontalLayout: {fileID: 0}
+  MaxPerLine: 20
+  MaxLines: 8
+  SummaryTextPrefab: {fileID: 0}
   EnemySpriteArray:
   - type: 0
     enemySprite: {fileID: 1570698588532512, guid: c38ad19c34c7b4ee790eb750ac67a1f1,
@@ -5967,6 +5966,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UpgradeButton: {fileID: 469957500}
+  TowerLevelText: {fileID: 0}
 --- !u!114 &873542581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8039,6 +8039,7 @@ Transform:
   - {fileID: 1246245276}
   - {fileID: 474740094}
   - {fileID: 32871705}
+  - {fileID: 1601274085}
   m_Father: {fileID: 849140844}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10226,7 +10227,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Heavy Knight Ennemy
+  m_Text: "Speed \nEnnemy"
 --- !u!222 &1332610758
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10994,6 +10995,7 @@ MonoBehaviour:
   ExtraGold: {fileID: 8300000, guid: e66c05008dfd54b65a39750fb4ca35be, type: 3}
   WalkSound: {fileID: 8300000, guid: 22b5b26c3429f42c482afafb562afc2a, type: 3}
   PauseCanvas: {fileID: 66760024}
+  GameStatusCanvas: {fileID: 0}
   Delay: 5
   _elapsedTime: 0
   _currentWave: 0
@@ -12154,7 +12156,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.38500002}
   m_AnchorMax: {x: 1, y: 0.8337969}
-  m_AnchoredPosition: {x: 32.69995, y: -11.5}
+  m_AnchoredPosition: {x: 32.700195, y: -11.5}
   m_SizeDelta: {x: -1080.3, y: -23}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1586589635
@@ -12245,6 +12247,104 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1586589633}
+--- !u!1 &1601274084
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1628853482783630, guid: 32d3451b05c13416788cd4d5d42cb3a6,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1601274085}
+  - component: {fileID: 1601274088}
+  - component: {fileID: 1601274087}
+  - component: {fileID: 1601274086}
+  m_Layer: 0
+  m_Name: GoldCanvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1601274085
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 224246364377135456, guid: 32d3451b05c13416788cd4d5d42cb3a6,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1601274084}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1119443269}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
+--- !u!114 &1601274086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114030878216349168, guid: 32d3451b05c13416788cd4d5d42cb3a6,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1601274084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1301386320, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &1601274087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114822271178822058, guid: 32d3451b05c13416788cd4d5d42cb3a6,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1601274084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 1
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 1136, y: 640}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0.5
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+--- !u!223 &1601274088
+Canvas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 223340470102878018, guid: 32d3451b05c13416788cd4d5d42cb3a6,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1601274084}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 2
+  m_TargetDisplay: 0
 --- !u!1 &1613506230
 GameObject:
   m_ObjectHideFlags: 0
@@ -13136,7 +13236,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1738799380
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13347,7 +13447,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.8337969}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 38.69995, y: 27.399628}
+  m_AnchoredPosition: {x: 38.700195, y: 27.399414}
   m_SizeDelta: {x: -1974.7, y: 46.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1764942616
@@ -13635,7 +13735,7 @@ GameObject:
   - component: {fileID: 1805889248}
   - component: {fileID: 1805889247}
   m_Layer: 0
-  m_Name: HeavyKnightButton
+  m_Name: SpeedButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13700,7 +13800,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 32871706}
-        m_MethodName: GenerateHeavyKnightEnemy
+        m_MethodName: GenerateSpeedEnemy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15200,6 +15300,7 @@ MonoBehaviour:
   - {fileID: 1350781579670054, guid: b7fafdaa574e544dabf051315fb3e2c3, type: 2}
   - {fileID: 1137001163059204, guid: 530c6305afd694ee4ba50cc0786c0eb9, type: 2}
   - {fileID: 1535925814191158, guid: 04d1a627062f14c998f87795612efa19, type: 2}
+  _ExplosionCollections: []
 --- !u!1 &1931043981
 GameObject:
   m_ObjectHideFlags: 0
@@ -15984,7 +16085,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 30.799805, y: -76.39987}
+  m_AnchoredPosition: {x: 30.799774, y: -76.3999}
   m_SizeDelta: {x: -116.8, y: -211.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1953109383

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace TowerDefense
 {
@@ -35,6 +36,14 @@ namespace TowerDefense
         public GameObject       SeventhPanel;
         public MenuTileScript   SeventhTile;
         public GameObject       LastPanel;
+
+        public Button           MonoButton;
+        public Button           AOEButton;
+        public Button           PoisonButton;
+        public Button           FrostButton;
+        public Button           BreakButton;
+        public Button           UpgradeButton;
+        public Button           DestroyButton;
 
         private TutorialStep    _currentStep;
         private float           _time;
@@ -79,7 +88,12 @@ namespace TowerDefense
 
                         CreateMenuPanel.SetActive(true);
 
-                        //TowerManagerScript.Instance.SetPotentialPosition(new Vector3(-1.5f, 3.5f, 0.0f));
+                        MonoButton.interactable = true;
+                        BreakButton.interactable = false;
+                        AOEButton.interactable = false;
+                        FrostButton.interactable = false;
+                        PoisonButton.interactable = false;
+
                         break;
                     case TutorialStep.THIRD_STEP:
                         GameManagerScript.Instance.CreateRewardEvent += CreateRewardEvent;
@@ -92,7 +106,9 @@ namespace TowerDefense
 
                         FirstTile.Clicked();
 
-                        //TowerManagerScript.Instance.SetPotentialPosition(new Vector3(-1.5f, 3.5f, 0.0f));
+
+                        UpgradeButton.interactable = true;
+                        DestroyButton.interactable = false;
                         break;
                     case TutorialStep.FIFTH_STEP:
                         GameManagerScript.Instance.PauseGameForTutorial();
@@ -100,7 +116,11 @@ namespace TowerDefense
 
                         FifthTile.Clicked();
 
-                        //TowerManagerScript.Instance.SetPotentialPosition(new Vector3(-1.5f, 3.5f, 0.0f));
+                        MonoButton.interactable = false;
+                        BreakButton.interactable = false;
+                        AOEButton.interactable = true;
+                        FrostButton.interactable = false;
+                        PoisonButton.interactable = false;
                         break;
                     case TutorialStep.SIXTH_STEP:
                         GameManagerScript.Instance.PauseGameForTutorial();
@@ -108,13 +128,24 @@ namespace TowerDefense
 
                         SixthTile.Clicked();
 
-                        //TowerManagerScript.Instance.SetPotentialPosition(new Vector3(-1.5f, 3.5f, 0.0f));
+                        MonoButton.interactable = false;
+                        BreakButton.interactable = false;
+                        AOEButton.interactable = false;
+                        FrostButton.interactable = true;
+                        PoisonButton.interactable = false;
+
                         break;
                     case TutorialStep.SEVENTH_STEP:
                         GameManagerScript.Instance.PauseGameForTutorial();
                         SeventhPanel.SetActive(true);
 
                         SeventhTile.Clicked();
+
+                        MonoButton.interactable = false;
+                        BreakButton.interactable = false;
+                        AOEButton.interactable = false;
+                        FrostButton.interactable = false;
+                        PoisonButton.interactable = true;
 
                         //TowerManagerScript.Instance.SetPotentialPosition(new Vector3(-1.5f, 3.5f, 0.0f));
                         break;
@@ -140,6 +171,8 @@ namespace TowerDefense
             ThirdPanel.SetActive(true);
 
             GameManagerScript.Instance.PauseGameForTutorial();
+
+            InputManagerScript.Instance.SetInteraction(true);
         }
 
         void ClaimRewardEvent() {

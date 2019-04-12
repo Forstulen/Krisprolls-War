@@ -17,11 +17,14 @@ namespace TowerDefense
     {
         [SerializeField]
         private GameObject[]                        _TowerCollections;
+
         private GameObject                          _parentGameObject;
 
         private Dictionary<Vector3, Tower>          _TowerDictionnary;
 
         private Vector3                             _potentialTowerPosition;
+
+        private int                                 _potentialLayer;
 
         private PooledObjectScript[]                _pooledTowerCollections;
 
@@ -55,6 +58,11 @@ namespace TowerDefense
             _TowerDictionnary.Add(_potentialTowerPosition, script);
             _potentialTowerPosition = Vector3.zero;
 
+            SpriteRenderer[] rend = gameObject.GetComponentsInChildren<SpriteRenderer>();
+
+            foreach (SpriteRenderer sp in rend)
+                sp.sortingLayerID = _potentialLayer;
+
             return gameObject;
         }
 
@@ -72,6 +80,11 @@ namespace TowerDefense
 
             _TowerDictionnary.Add(_potentialTowerPosition, script);
             _potentialTowerPosition = Vector3.zero;
+
+            SpriteRenderer[] rend = gameObject.GetComponentsInChildren<SpriteRenderer>();
+
+            foreach (SpriteRenderer sp in rend)
+                sp.sortingLayerID = _potentialLayer;
 
             return gameObject;
         }
@@ -113,6 +126,10 @@ namespace TowerDefense
 
         }
 
+        public int GetBuildTowerNumber(TowerType type) {
+            return _pooledTowerCollections[(int)type].Count();
+        }
+
         public string GetNameTower(TowerType type)
         {
             if (type == TowerType.DAMAGE_MONO)
@@ -141,9 +158,13 @@ namespace TowerDefense
 
         public Tower GetCurrentTower()
         {
-            Tower script = _TowerDictionnary[_potentialTowerPosition];
+            if (_TowerDictionnary.ContainsKey(_potentialTowerPosition))
+            {
+                Tower script = _TowerDictionnary[_potentialTowerPosition];
 
-            return script;
+                return script;
+            }
+            return null;
         }
 
         public bool DestroyTower()
@@ -152,6 +173,8 @@ namespace TowerDefense
                 _TowerDictionnary.ContainsKey(_potentialTowerPosition))
             {
                 Tower script = _TowerDictionnary[_potentialTowerPosition];
+
+                FXManagerScript.Instance.CreateExplosion(_potentialTowerPosition);
 
                 script.DestroyTower();
 
@@ -181,13 +204,24 @@ namespace TowerDefense
             _potentialTowerPosition = v;
         }
 
-        public void DestroyTowers()
+        public void SetSortingLayer(int layer)
+        {
+            _potentialLayer = layer;
+        }
+
+        public void DestroyTowers(bool shouldExplode)
         {
             foreach (PooledObjectScript p in _pooledTowerCollections)
             {
                 foreach (GameObject go in p.GetPooledObjects())
                 {
-                    //Could add an explosion
+                    Tower tower = go.GetComponent<Tower>();
+
+                    if (tower.gameObject.activeInHierarchy && shouldExplode)
+                        FXManagerScript.Instance.CreateExplosion(tower.transform.position);
+
+                    tower.DestroyTower();
+
                     _TowerDictionnary.Clear();
 
                     go.SetActive(false);

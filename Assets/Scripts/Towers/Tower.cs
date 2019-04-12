@@ -39,6 +39,7 @@ namespace TowerDefense {
         protected TowerType _TowerType;
         [SerializeField]
         protected TowerLevel _TowerLevel;
+        protected TowerLevel _MaxTowerLevel;
 
         [SerializeField]
         protected TowerTargetingType _targetingType;
@@ -59,6 +60,7 @@ namespace TowerDefense {
 
         protected float _ElapseTime;
 
+
         protected CircleCollider2D _Collider;
 
         [SerializeField]
@@ -66,8 +68,9 @@ namespace TowerDefense {
         [SerializeField]
         private List<GameObject> _shouldRemoveList;
 
-        public int _CurrentPriceTower;
+        protected float _initialSpeed;
 
+        protected int _CurrentPriceTower;
 
         public Tower(int _DamageMin, int _DamageMax, float _Range, float _Speed)
         {
@@ -79,6 +82,7 @@ namespace TowerDefense {
             this._ElapseTime = _Speed;
             this._targetingType = TowerTargetingType.RANDOMLY;
             this._TowerLevel = TowerLevel.NONE;
+            this._initialSpeed = _Speed;
         }
 
         void Start()
@@ -102,15 +106,13 @@ namespace TowerDefense {
 
         void ResetTarget(GameObject obj)
         {
-            Debug.Log("RESET TARGET " + obj.name);
-
             FollowingWaypointScript script = obj.gameObject.GetComponent<FollowingWaypointScript>();
 
             script.StopFollowing -= ResetTarget;
 
             _shouldRemoveList.Add(obj);
 
-            if (obj.transform == _Enemy.transform)
+            if (_Enemy && obj.transform == _Enemy.transform)
             {
                 _Enemy = null;
             }
@@ -201,23 +203,33 @@ namespace TowerDefense {
             if (_Enemy != null && _ElapseTime >= this._Speed)
             {
 
-                _ElapseTime = 0.0f;
+                if (!_Enemy.gameObject.activeSelf)
+                {
+                    Debug.Log("FORCE RESET FOR EMPTY TARGET");
+                    SelectTarget();
+                }
 
-                _anim.SetBool("Fire",true);
+                if (_Enemy != null)
+                {
+                    _ElapseTime = 0.0f;
 
-                StartCoroutine(ReactivateAnimation());
+                    _anim.SetBool("Fire", true);
+                    _anim.speed = _initialSpeed / _Speed;
 
-                GameObject BulletGameObject = BulletManagerScript.Instance.CreateBullet(transform.position, Quaternion.identity, BulletType.SIMPLE_BULLET);
+                    StartCoroutine(ReactivateAnimation());
 
-                SimpleBulletScript bulletScript = BulletGameObject.GetComponent<SimpleBulletScript>();
+                    GameObject BulletGameObject = BulletManagerScript.Instance.CreateBullet(transform.position, Quaternion.identity, BulletType.SIMPLE_BULLET);
 
-                bulletScript.target = _Enemy;
+                    SimpleBulletScript bulletScript = BulletGameObject.GetComponent<SimpleBulletScript>();
 
-                float alea = Random.Range(_DamageMin, _DamageMax);
+                    bulletScript.target = _Enemy;
 
-                bulletScript._Damage = alea;
+                    float alea = Random.Range(_DamageMin, _DamageMax);
 
-                AudioManagerScript.Instance.Play(FireSound, transform, 0.5f);
+                    bulletScript._Damage = alea;
+
+                    AudioManagerScript.Instance.Play(FireSound, transform, 0.5f);
+                }
             }
             _ElapseTime += Time.deltaTime;
 
@@ -242,9 +254,9 @@ namespace TowerDefense {
 
             }
 
-            if (_Enemy == null &&
-                _colliderList != null &&
-                _colliderList.Count > 0)
+            if ((_Enemy == null || (_Enemy != null && !_Enemy.gameObject.activeSelf)) &&
+                (_colliderList != null &&
+                 _colliderList.Count > 0))
             {
                 switch (_targetingType)
                 {
@@ -271,11 +283,11 @@ namespace TowerDefense {
 
                 }
 
-
-                //if (debug)
-                //{
-                //    Debug.Log("Select enemy");
-                //}
+                if (_Enemy != null && !_Enemy.gameObject.activeSelf) {
+                    _shouldRemoveList.Add(_Enemy.gameObject);
+                    _Enemy = null;
+                    SelectTarget();
+                }
             }
         }
 
@@ -300,7 +312,6 @@ namespace TowerDefense {
             _Collider.radius = _Range;
             _CurrentPriceTower *= 2;
 
-
             AudioManagerScript.Instance.Play(UpgradeSound, transform, 0.5f);
         }
 
@@ -308,11 +319,19 @@ namespace TowerDefense {
             return _TowerLevel != TowerLevel.LEVEL_MAX;
         }
 
+        public TowerLevel GetLevel()
+        {
+            return _TowerLevel;
+        }
+
+        public virtual TowerLevel GetMaxLevel() {
+            return TowerLevel.LEVEL_MAX;   
+        }
+
         public int GetCurrentPrice()
         {
             return _CurrentPriceTower;
         }
-
             
     }
 }

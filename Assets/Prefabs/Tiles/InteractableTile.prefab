@@ -78,6 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4e9a96d5dbfa473e83cefe8160c41d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SortingLayerName: Foreground
 --- !u!212 &212726160821932172
 SpriteRenderer:
   m_ObjectHideFlags: 1

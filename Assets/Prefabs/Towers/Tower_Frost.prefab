@@ -21,8 +21,23 @@ GameObject:
   - component: {fileID: 4400585417396738}
   - component: {fileID: 212005977664741720}
   - component: {fileID: 95247805539537518}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: frost_ice
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1720763266554126
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4170481780763078}
+  m_Layer: 2
+  m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37,7 +52,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4648861967360188}
   - component: {fileID: 212181845521364240}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: RangeSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,13 +70,27 @@ GameObject:
   - component: {fileID: 212145042712432602}
   - component: {fileID: 58716964455931104}
   - component: {fileID: 114636132065264554}
-  m_Layer: 0
+  - component: {fileID: 114674159680737696}
+  m_Layer: 2
   m_Name: Tower_Frost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4170481780763078
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1720763266554126}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.09, y: -1.29, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4552196899499798}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4400585417396738
 Transform:
   m_ObjectHideFlags: 1
@@ -87,6 +116,7 @@ Transform:
   m_Children:
   - {fileID: 4648861967360188}
   - {fileID: 4400585417396738}
+  - {fileID: 4170481780763078}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -164,6 +194,24 @@ MonoBehaviour:
   _colliderList: []
   _shouldRemoveList: []
   _CurrentPriceTower: 100
+--- !u!114 &114674159680737696
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1975498738384676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63909d034b4094e488e76d0bc6143f71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RootTransform: {fileID: 4170481780763078}
+  Offset: {x: 0.4, y: 0, z: 0}
+  MaximumSize: {x: 0.8, y: 0.08, z: 0}
+  EmptyLevelSprite: {fileID: 21300000, guid: 3134dfb16e89d41f4b6c672a310a632d, type: 3}
+  FilledLevelSprite: {fileID: 21300000, guid: b19cf34f3a79445ebb0ee03e747d593f, type: 3}
+  SortingLayerName: Outline
+  SortingLayer: 10
 --- !u!212 &212005977664741720
 SpriteRenderer:
   m_ObjectHideFlags: 1

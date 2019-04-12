@@ -20,7 +20,9 @@ namespace TowerDefense
         public AudioClip    ExtraGold;
         public AudioClip    WalkSound;
         public Canvas       PauseCanvas;
+        public Canvas       GameStatusCanvas;
         public float        Delay = 5.0f;
+        public int          TargetFrameRate = 60;
 
         [SerializeField]
         private float   _elapsedTime;
@@ -51,8 +53,12 @@ namespace TowerDefense
 
         private AudioSource _footstepSource;
 
+        private float _initialTimescale;
+
         private void Start()
         {
+            Application.targetFrameRate = TargetFrameRate;
+
             EnemyManagerScript.Instance.EnemySpawning += AddSpawnedEnemy;
             EnemyManagerScript.Instance.EnemyKilling += AddKilledEnemy;
             EnemyManagerScript.Instance.EnemySurviving += AddSurvivedEnemy;
@@ -61,6 +67,13 @@ namespace TowerDefense
             _isPaused = false;
 
             _killedEnemiesList = new List<EnemyType>();
+            _initialTimescale = Time.timeScale;
+        }
+
+        private void OnApplicationPause(bool pause)
+        {
+            if (pause)
+                PauseGame();
         }
 
         private void Update()
@@ -69,9 +82,12 @@ namespace TowerDefense
                 LaunchLevel();
             }
 
+            if (_elapsedTime >= 10.0f && !_canLaunchWave && CurrentLevel != Level.TUTORIAL && CurrentLevel != Level.ADJUSTEMENT)
+                _canLaunchWave = true;
+
             if (IsWaveFinished() && _isGameStarted && _canLaunchWave) {
                 _footstepSource.Pause();
-                if (_escapedEnemies == 0)
+                if (_escapedEnemies == 0 && _spawnedEnemies > 0)
                 {
                     if (CreateRewardEvent != null)
                         CreateRewardEvent();
@@ -103,17 +119,30 @@ namespace TowerDefense
             PauseCanvas.gameObject.SetActive(_isPaused);
         }
 
+        public void SpeedUpGame() {
+            if (!_isPaused)
+                Time.timeScale = _initialTimescale * 2.0f;
+        }
+
+        public void NormalSpeedGame()
+        {
+            if (!_isPaused)
+                Time.timeScale = _initialTimescale;
+        }
+
+        public bool CanBeInteractive() {
+            return CurrentLevel != Level.TUTORIAL;
+        }
+
         public void PauseGameForTutorial() {
             if (_isPaused)
             {
-                Debug.Log("UnPauseGame");
                 Time.timeScale = 1.0f;
                 StartCoroutine(AudioManagerScript.Instance.UnPauseMusicWithFadeIn());
                 AudioManagerScript.Instance.UnpauseFX();
             }
             else
             {
-                Debug.Log("PauseGame");
                 Time.timeScale = 0.0f;
                 StartCoroutine(AudioManagerScript.Instance.PauseMusicWithFadeOut());
                 AudioManagerScript.Instance.PauseFX();
@@ -125,7 +154,10 @@ namespace TowerDefense
         public string GetNextLevelName() {
             LevelModel model = LevelManagerScript.instance.GetNextLevel(CurrentLevel);
 
-            if (model == null || !model.IsUnlocked())
+            if (model == null)
+                return "CREDITS";
+
+            if (!model.IsUnlocked())
                 return "";
 
             return model.GetLevelName();
@@ -138,7 +170,7 @@ namespace TowerDefense
             AudioManagerScript.Instance.PauseFX();
 
             EnemyManagerScript.Instance.DestroyEnemies();
-            TowerManagerScript.Instance.DestroyTowers();
+            TowerManagerScript.Instance.DestroyTowers(false);
 
         }
 
@@ -146,9 +178,9 @@ namespace TowerDefense
             Time.timeScale = 1.0f;
 
             EnemyManagerScript.Instance.DestroyEnemies();
-            TowerManagerScript.Instance.DestroyTowers();
+            TowerManagerScript.Instance.DestroyTowers(false);
 
-            StartCoroutine(AudioManagerScript.Instance.UnPauseMusicWithFadeIn());
+            //StartCoroutine(AudioManagerScript.Instance.UnPauseMusicWithFadeIn());
             AudioManagerScript.Instance.UnpauseFX();
 
             LaunchLevel();
@@ -160,7 +192,7 @@ namespace TowerDefense
             _canLaunchWave = true;
 
             if (_footstepSource == null) {
-                _footstepSource = AudioManagerScript.Instance.PlayLoop(WalkSound, Camera.main.transform, 0.1f);
+                _footstepSource = AudioManagerScript.Instance.PlayLoop(WalkSound, Camera.main.transform, true, false, 0.05f);
             } else if (!_footstepSource.isPlaying) {
                 _footstepSource.Play();
             }
@@ -183,7 +215,8 @@ namespace TowerDefense
         }
 
         public bool CanCreateTower(TowerType type) {
-            return TowerManagerScript.Instance.GetPriceTower(type) <= _golds;
+            return TowerManagerScript.Instance.GetPriceTower(type) <= _golds && 
+                                     TowerManagerScript.Instance.GetBuildTowerNumber(type) < LevelManagerScript.Instance.GetLevel(CurrentLevel).GetTowerLimit(type);
         }
 
         public void CreateTower(TowerType type)
@@ -194,16 +227,12 @@ namespace TowerDefense
             {
                 TowerManagerScript.Instance.CreateTower(type);
                 _golds -= goldsTower;
-            } else {
-                Debug.Log("Pas assez d'argent");
-
             }
         }
 
         public void DestroyTower()
         {
-            
-            int goldsTower = TowerManagerScript.Instance.GetPriceTower(TowerManagerScript.Instance.GetCurrentTower().GetTowerType());
+            int goldsTower = TowerManagerScript.Instance.GetCurrentTower().GetCurrentPrice();
 
             TowerManagerScript.Instance.DestroyTower();
             _golds += goldsTower / 2;
@@ -215,6 +244,11 @@ namespace TowerDefense
 
         public bool CanUpgradeTower() {
             return TowerManagerScript.Instance.GetCurrentTower().CanBeUpgraded() && TowerManagerScript.Instance.GetCurrentTower().GetCurrentPrice() <= _golds;
+        }
+
+        public int GetCurrentTowerLevel()
+        {
+            return (int)TowerManagerScript.Instance.GetCurrentTower().GetLevel();
         }
 
         public void UpgradeTower()
@@ -256,6 +290,10 @@ namespace TowerDefense
         public int GetWavesNumber()
         {
             return LevelManagerScript.Instance.GetLevel(CurrentLevel).GetWavesNumber();
+        }
+
+        public string   GetWaveStatus() {
+            return string.Format("Wave {0}", GetWaves() + 1);
         }
 
         public List<EnemyType>  GetKilledEnemiesList() {
@@ -327,8 +365,6 @@ namespace TowerDefense
         }
 
         public void LaunchLevel() {
-            Debug.Log("Launch Level");
-
             if (GameStarted != null)
                 GameStarted();
 
@@ -351,8 +387,20 @@ namespace TowerDefense
             StartCoroutine(LaunchDelayedWave());
         }
 
+        public void SkipDelayedWave() {
+            StopAllCoroutines();
+
+              
+            LaunchWave();
+        }
+
         IEnumerator LaunchDelayedWave() {
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(Delay);
+
+            if (LevelManagerScript.Instance.CanLaunchAnotherWave(CurrentLevel, _currentWave))
+                GameStatusCanvas.gameObject.SetActive(true);
+
+            yield return new WaitForSeconds(Delay);
 
             LaunchWave();
         }

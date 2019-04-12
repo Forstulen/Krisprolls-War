@@ -14,11 +14,11 @@ namespace TowerDefense
         const float _SPEED = 0.0f;
         public static int _COST = 60;
 
-        const TowerType _TowerType = TowerType.BREAK_ARMOR;
-
-
         public BreakArmor() : base(_DAMAGEMIN, _DAMAGEMAX, _RANGE, _SPEED)
         {
+            _TowerType = TowerType.BREAK_ARMOR;
+
+
         }
 
         public override void Action()
@@ -66,40 +66,40 @@ namespace TowerDefense
                     _CurrentPriceTower = _COST;
                     break;
                 case TowerLevel.LEVEL_2:
-                    _DamageMin = 7.5f;
-                    _DamageMax = 7.5f;
+                    _DamageMin = 10.0f;
+                    _DamageMax = 10.0f;
                     _Speed -= 0.2f;
                     _Range += 0.25f;
                     _Collider.radius = _Range;
                     _CurrentPriceTower += _COST;
                     break;
                 case TowerLevel.LEVEL_3:
-                    _DamageMin = 10.0f;
-                    _DamageMax = 10.0f;
+                    _DamageMin = 20.0f;
+                    _DamageMax = 20.0f;
                     _Speed -= 0.2f;
                     _Range += 0.25f;
                     _Collider.radius = _Range;
                     _CurrentPriceTower += _COST * 2;
                     break;
                 case TowerLevel.LEVEL_4:
-                    _DamageMin = 15.0f;
-                    _DamageMax = 15.0f;
+                    _DamageMin = 30.0f;
+                    _DamageMax = 30.0f;
                     _Speed -= 0.25f;
                     _Range += 0.25f;
                     _Collider.radius = _Range;
                     _CurrentPriceTower += _COST * 3;
                     break;
                 case TowerLevel.LEVEL_5:
-                    _DamageMin = 20.0f;
-                    _DamageMax = 20.0f;
+                    _DamageMin = 50.0f;
+                    _DamageMax = 50.0f;
                     _Speed -= 0.25f;
                     _Range += 0.25f;
                     _Collider.radius = _Range;
                     _CurrentPriceTower += _COST * 4;
                     break;
                 case TowerLevel.LEVEL_6:
-                    _DamageMin = 30.0f;
-                    _DamageMax = 30.0f;
+                    _DamageMin = 75.0f;
+                    _DamageMax = 75.0f;
                     _Speed -= 0.25f;
                     _Range += 0.25f;
                     _Collider.radius = _Range;
@@ -115,7 +115,36 @@ namespace TowerDefense
                     break;
             }
 
+            DisplayTowerLevelScript script = GetComponent<DisplayTowerLevelScript>();
+
+            if (script)
+                script.DisplayLevel();
+
             AudioManagerScript.Instance.Play(UpgradeSound, transform, 0.5f);
+        }
+
+        public override void DestroyTower()
+        {
+            base.DestroyTower();
+
+            _DamageMin = _DAMAGEMIN;
+            _DamageMax = _DAMAGEMAX;
+            _Range = _RANGE;
+            _Speed = _SPEED;
+            _CurrentPriceTower = _COST;
+            _TowerLevel = TowerLevel.LEVEL_1;
+            if (_Collider)
+                _Collider.radius = _Range;
+
+            DisplayTowerLevelScript script = GetComponent<DisplayTowerLevelScript>();
+
+            if (script)
+                script.DisplayLevel();
+        }
+
+        public override TowerLevel GetMaxLevel()
+        {
+            return TowerLevel.LEVEL_6;
         }
     }
 }

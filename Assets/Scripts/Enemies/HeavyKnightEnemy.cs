@@ -10,7 +10,7 @@ namespace TowerDefense
 
         const string _NAME = "Heavy Knight";
         const int _LIFE = 100;
-        const float _ARMOR = 50.0f;
+        const float _ARMOR = 75.0f;
         const int _RESISTANCE = 25;
         const float _SPEED = 1.25f;
         const int _REWARD = 40;

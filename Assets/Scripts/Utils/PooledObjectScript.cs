@@ -59,6 +59,20 @@ namespace TowerDefense
             return null;
         }
 
+        public int Count() {
+            int count = 0;
+
+            foreach (GameObject go in _pooledObjects)
+            {
+                if (go.activeInHierarchy)
+                {
+                    ++count;
+                }
+            }
+
+            return count;
+        }
+
         public List<GameObject> GetPooledObjects() {
             return _pooledObjects;
         }

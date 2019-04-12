@@ -23,7 +23,7 @@ namespace TowerDefense
         void Update()
         {
             _fadeImage.color = Color.Lerp(_fadeImage.color, _transparentColor, _time);
-            _time += Time.deltaTime / 1.0f;
+            _time += Time.deltaTime / 2.0f;
 
             if (_fadeImage.color == _transparentColor)
                 _fadeImage.gameObject.SetActive(false);

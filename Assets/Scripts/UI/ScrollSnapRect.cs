@@ -90,6 +90,8 @@ public class ScrollSnapRect : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
 
         if (prevButton)
             prevButton.GetComponent<Button>().onClick.AddListener(() => { PreviousScreen(); });
+
+        AdjustButtons();
 	}
 
     //------------------------------------------------------------------------
@@ -224,13 +226,32 @@ public class ScrollSnapRect : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
     }
 
     //------------------------------------------------------------------------
+
+    private void AdjustButtons() {
+        if (prevButton && nextButton)
+        {
+            if (_currentPage == _pageCount - 1)
+                nextButton.SetActive(false);
+            else if (_currentPage == 0)
+                prevButton.SetActive(false);
+            else
+            {
+                prevButton.SetActive(true);
+                nextButton.SetActive(true);
+            }
+        }
+    }
+
+    //------------------------------------------------------------------------
     private void NextScreen() {
         LerpToPage(_currentPage + 1);
+        AdjustButtons();
     }
 
     //------------------------------------------------------------------------
     private void PreviousScreen() {
         LerpToPage(_currentPage - 1);
+        AdjustButtons();
     }
 
     //------------------------------------------------------------------------

@@ -9,6 +9,8 @@ namespace TowerDefense
     [RequireComponent(typeof(SpriteRenderer))]
     public class MenuTileScript : ClickableTileScript
     {
+        public  string          SortingLayerName;
+
         private RectTransform   _CreateMenuPanel;
         private RectTransform   _ModifyMenuPanel;
         private Canvas          _CreateMenuCanvas;
@@ -80,6 +82,7 @@ namespace TowerDefense
 
         public override void Clicked() {
             TowerManagerScript.Instance.SetPotentialPosition(GetTowerPosition());
+            TowerManagerScript.Instance.SetSortingLayer(SortingLayer.NameToID(SortingLayerName));
 
             Debug.Log("Clicked Tile");
 

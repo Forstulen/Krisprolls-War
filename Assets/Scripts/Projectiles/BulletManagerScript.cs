@@ -43,8 +43,6 @@ namespace TowerDefense
             gameObject.transform.parent = _parentGameObject.transform;
             gameObject.SetActive(true);
 
-            Debug.Log("create bullet ");
-
             return gameObject;
         }
 
@@ -56,8 +54,6 @@ namespace TowerDefense
             gameObject.transform.rotation = rotation;
             gameObject.transform.parent = _parentGameObject.transform;
             gameObject.SetActive(true);
-
-            Debug.Log("create bullet");
 
             return gameObject;
         }
