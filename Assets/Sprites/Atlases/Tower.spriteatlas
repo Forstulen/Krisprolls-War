@@ -1,0 +1,152 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Tower
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    - serializedVersion: 3
+      m_BuildTarget: Android
+      m_MaxTextureSize: 1024
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 1
+    - serializedVersion: 3
+      m_BuildTarget: WebGL
+      m_MaxTextureSize: 1024
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 1
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: b5e0df5906f8cb4449599428a78702d0, type: 3}
+    totalSpriteSurfaceArea: 309315
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 54a9ad301d8a4934ca554bb54863b95f, type: 3}
+  - {fileID: 21300000, guid: b6cbb7316d8738f439fce8b30404d933, type: 3}
+  - {fileID: 21300000, guid: 3134dfb16e89d41f4b6c672a310a632d, type: 3}
+  - {fileID: 21300000, guid: f2427c8297ae9634e97e297ca85f88e1, type: 3}
+  - {fileID: 21300000, guid: 140002c2ebaee554591fe9276ca8aba0, type: 3}
+  - {fileID: 21300000, guid: f39409d2bbdc548998dd55d15d0d0f0e, type: 3}
+  - {fileID: 21300000, guid: dd223d034d247c546af0bcc9f42be598, type: 3}
+  - {fileID: 21300000, guid: 6eeceb33467f18d4db01033913df8572, type: 3}
+  - {fileID: 21300000, guid: a991bf63166369a4b824bf6caac9887e, type: 3}
+  - {fileID: 21300000, guid: 788ba0a301253624d87127981f3a8068, type: 3}
+  - {fileID: 21300000, guid: 081b4264441f5fc49a64bd08a00b5fcd, type: 3}
+  - {fileID: 21300000, guid: e3a8e384e06ebb94790038256905ba4d, type: 3}
+  - {fileID: 21300000, guid: e42898d59b5aa2044b95cf1ab79095e9, type: 3}
+  - {fileID: 21300000, guid: 802d5d965b700984f98d021f2260ef5b, type: 3}
+  - {fileID: 21300000, guid: 4c8c45880bb9b4544a33e0af469e8c7c, type: 3}
+  - {fileID: 21300000, guid: 2f72ae3938bbf43248000c5be75a65f9, type: 3}
+  - {fileID: 21300000, guid: 7b254159988ebfa47b02cbd744fb7261, type: 3}
+  - {fileID: 21300000, guid: a0f5f34b3b5656f47b3d7d9a7833bbe9, type: 3}
+  - {fileID: 21300000, guid: 57dc6d9b0d2eeb348906b6a713708fb0, type: 3}
+  - {fileID: 21300000, guid: 334740abbb511ba4f94d4a44f557b42f, type: 3}
+  - {fileID: 21300000, guid: 2e8fe5eb4bfb88a43965f9205db35e46, type: 3}
+  - {fileID: 21300000, guid: 522b553cbeb725e418c04550aeb99756, type: 3}
+  - {fileID: 21300000, guid: b86049cced156a64784047f4c0f7a276, type: 3}
+  - {fileID: 21300000, guid: d628b80d771c549429908d1a37d46d86, type: 3}
+  - {fileID: 21300000, guid: 01edc01df8dbdce4fad80f02fcd6768b, type: 3}
+  - {fileID: 21300000, guid: 5a0bbafd89ba34d4f947d29e30719918, type: 3}
+  - {fileID: 21300000, guid: 275ac76ead62204439441396fa187c40, type: 3}
+  - {fileID: 21300000, guid: 392bd88e817c81d4c8b3307af5107a37, type: 3}
+  - {fileID: 21300000, guid: de57d6be7c3757947bf3e5db9edaef83, type: 3}
+  - {fileID: 21300000, guid: fe5a0adeaf3324b41bbcc0f20ab2f8e5, type: 3}
+  - {fileID: 21300000, guid: 6170320fb1e55b242a7153bbf624ebfd, type: 3}
+  - {fileID: 21300000, guid: 09da523f5af07914ca011cc1fac63d1d, type: 3}
+  - {fileID: 21300000, guid: bfef5e3f8bd993d49aec894b944e05a6, type: 3}
+  - {fileID: 21300000, guid: c921a34f8c522984d804d699312c9fe4, type: 3}
+  - {fileID: 21300000, guid: b19cf34f3a79445ebb0ee03e747d593f, type: 3}
+  - {fileID: 21300000, guid: 0848da5fcbe05cc43af767d5a1b0dddc, type: 3}
+  - {fileID: 21300000, guid: 0196f08f2ca7abd45a03a4428d78b800, type: 3}
+  - {fileID: 21300000, guid: 2cbee39f8b4bdde4e96a0bfac3f5a732, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - 31
+  - 54
+  - emptyLevel
+  - 30
+  - 34
+  - break_armor
+  - 17
+  - 32
+  - 60
+  - 38
+  - 40
+  - 24
+  - 44
+  - 15
+  - 29
+  - frost_ice
+  - 42
+  - 39
+  - 3
+  - 58
+  - 9
+  - 57
+  - 56
+  - 41
+  - 12
+  - 43
+  - 5
+  - 37
+  - 28
+  - 55
+  - 33
+  - 35
+  - 8
+  - 61
+  - filledLevel
+  - 4
+  - 36
+  - 59
+  m_Tag: Tower
+  m_IsVariant: 0

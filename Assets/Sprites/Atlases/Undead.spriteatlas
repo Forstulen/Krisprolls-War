@@ -1,0 +1,162 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Undead
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    - serializedVersion: 3
+      m_BuildTarget: Android
+      m_MaxTextureSize: 512
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 1
+    - serializedVersion: 3
+      m_BuildTarget: iPhone
+      m_MaxTextureSize: 512
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 1
+    - serializedVersion: 3
+      m_BuildTarget: Standalone
+      m_MaxTextureSize: 512
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 1
+    - serializedVersion: 3
+      m_BuildTarget: WebGL
+      m_MaxTextureSize: 1024
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 1
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: b714e05b4084a4680aa8b93610e180d6, type: 3}
+    totalSpriteSurfaceArea: 631907
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 0bf8b5309b9784b7a92508b74bbac9ce, type: 3}
+  - {fileID: 21300000, guid: 177aa7c0b61c544349337cc997b033a2, type: 3}
+  - {fileID: 21300000, guid: bbd4cd51a8a1d44739b17d79e82484e5, type: 3}
+  - {fileID: 21300000, guid: 25dbeb71299bf449da9e6de7c9fdceea, type: 3}
+  - {fileID: 21300000, guid: 46264f421bfc0404a8b3e675fd090d0f, type: 3}
+  - {fileID: 21300000, guid: 07191d72064e041a69c7cbe35ae68484, type: 3}
+  - {fileID: 21300000, guid: 05a254a2ddab14c2c825abe6dba3f061, type: 3}
+  - {fileID: 21300000, guid: 3a0f22d21a0184b9cacb9d050b2ce649, type: 3}
+  - {fileID: 21300000, guid: 8f471b73974144fc0b8cf4e4a39c0fb3, type: 3}
+  - {fileID: 21300000, guid: 05fc00e44ab35477cb80b9dce96b10a4, type: 3}
+  - {fileID: 21300000, guid: ec4d41251cab741988a8df669e631751, type: 3}
+  - {fileID: 21300000, guid: d843233554591450fa1b6823ff428e85, type: 3}
+  - {fileID: 21300000, guid: c8680e35305d04a6cb7ff35ef6adcde0, type: 3}
+  - {fileID: 21300000, guid: ab7eff16badde4e20bb76c14d9c6fe36, type: 3}
+  - {fileID: 21300000, guid: 3919202757f354d25a6cb8698b85321c, type: 3}
+  - {fileID: 21300000, guid: 7eb67cb8a02074e55b8fd4ca7d42947d, type: 3}
+  - {fileID: 21300000, guid: a8309109325244c08bc364cf90bb07ed, type: 3}
+  - {fileID: 21300000, guid: 484bc61929afd41febe5c836628b03b5, type: 3}
+  - {fileID: 21300000, guid: 998455290f336428a91a40485124fd3f, type: 3}
+  - {fileID: 21300000, guid: 5e52f62914f4447c28f734e625708eef, type: 3}
+  - {fileID: 21300000, guid: 681b2e2995105470d8b990b321a0467c, type: 3}
+  - {fileID: 21300000, guid: 45f446e912d5c465eac660d30d35ee9c, type: 3}
+  - {fileID: 21300000, guid: 369bcd4a7cfb347db8bdc11fd4df6539, type: 3}
+  - {fileID: 21300000, guid: d58a666c5d63f4c709948c3e19aba07a, type: 3}
+  - {fileID: 21300000, guid: e790cbac736f747fbb8768bef045d730, type: 3}
+  - {fileID: 21300000, guid: fe3b67bc0f4c1470d8c26c222f333cb2, type: 3}
+  - {fileID: 21300000, guid: 4805901d5e21a41ec89fe9515916a49e, type: 3}
+  - {fileID: 21300000, guid: 26a878ad1a6ad4747aeb89ddf812cad9, type: 3}
+  - {fileID: 21300000, guid: 8695e75e94c2240bc99af85d760c7c6c, type: 3}
+  - {fileID: 21300000, guid: 41af0beecc60f4a858224b93b4eca8a9, type: 3}
+  - {fileID: 21300000, guid: bbf460efcb5da44858cdba97a371f34c, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - tree_1
+  - stone_2
+  - bridge
+  - road_4
+  - road_7
+  - tree_2
+  - decor_3
+  - decor_4
+  - road_10
+  - decor_1
+  - road_5
+  - road_3
+  - road_1
+  - stone_1
+  - river_3
+  - main_bg
+  - road_9
+  - lake
+  - road_8
+  - river_5
+  - decor_2
+  - river_1
+  - dot
+  - river_6
+  - decor_5
+  - river_4
+  - road_6
+  - road_2
+  - river_2
+  - land
+  - decor_6
+  m_Tag: Undead
+  m_IsVariant: 0

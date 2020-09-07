@@ -1,0 +1,162 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Lava
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    - serializedVersion: 3
+      m_BuildTarget: iPhone
+      m_MaxTextureSize: 512
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 1
+    - serializedVersion: 3
+      m_BuildTarget: Standalone
+      m_MaxTextureSize: 512
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 1
+    - serializedVersion: 3
+      m_BuildTarget: Android
+      m_MaxTextureSize: 512
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 1
+    - serializedVersion: 3
+      m_BuildTarget: WebGL
+      m_MaxTextureSize: 1024
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 1
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: cb0f8deab8a964a218cd7d5449104305, type: 3}
+    totalSpriteSurfaceArea: 641651
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 0e0ae730881c44e64951737574161226, type: 3}
+  - {fileID: 21300000, guid: 98df8480e7ba6462e8f924c78052952e, type: 3}
+  - {fileID: 21300000, guid: ec4fd2815ada74db78501fd9b71054b2, type: 3}
+  - {fileID: 21300000, guid: 5a250b81e9eef4aa497d496a77ccb609, type: 3}
+  - {fileID: 21300000, guid: 108ffcd19b299426f981cbfbc4025a87, type: 3}
+  - {fileID: 21300000, guid: 1164e513c228b47e98f7f8ff74b3ee02, type: 3}
+  - {fileID: 21300000, guid: a7071d9399f04458cae1e40db81c9dff, type: 3}
+  - {fileID: 21300000, guid: 910547346fb694494bb1d6d6257f915f, type: 3}
+  - {fileID: 21300000, guid: 54235b947695c49ddbb17998e67d419d, type: 3}
+  - {fileID: 21300000, guid: 8175b4c42820e4328b9d21a6620f9eef, type: 3}
+  - {fileID: 21300000, guid: caea18f47642e41dca4c508d5b9553df, type: 3}
+  - {fileID: 21300000, guid: f3bcf49563bb547c880efe6b65b2e1e9, type: 3}
+  - {fileID: 21300000, guid: 5f0b91e5a44bc426b8e56d7ccd3a5d00, type: 3}
+  - {fileID: 21300000, guid: 3692f1f51a1fb464a94cf1872da90314, type: 3}
+  - {fileID: 21300000, guid: f313a086ecebb4727899227e74ec0ef2, type: 3}
+  - {fileID: 21300000, guid: 958bc40783c154bedbbaed49ddcfea92, type: 3}
+  - {fileID: 21300000, guid: 3c81cc5842e104c6c8516d49f9018f3a, type: 3}
+  - {fileID: 21300000, guid: f3345e19aba0947cc9343fdc0f9b580d, type: 3}
+  - {fileID: 21300000, guid: f13fada981c5f47408e102f92cc9b731, type: 3}
+  - {fileID: 21300000, guid: d09462f91287343368170a87cd803a15, type: 3}
+  - {fileID: 21300000, guid: f4c8927a7947a487a82d9c5443bce083, type: 3}
+  - {fileID: 21300000, guid: 1af6e6cab37cb4c0bbfc651b19378024, type: 3}
+  - {fileID: 21300000, guid: 478a930b3606b49769a52fb2070ee119, type: 3}
+  - {fileID: 21300000, guid: 64bac26cc0227409d880a466385d8b93, type: 3}
+  - {fileID: 21300000, guid: dc9fd39c98a824766b38b9533c138e30, type: 3}
+  - {fileID: 21300000, guid: 800e633e3ee4046fcb0da3cdaf41fb74, type: 3}
+  - {fileID: 21300000, guid: 5637a89ed17f24cdfa008fb0857e0e00, type: 3}
+  - {fileID: 21300000, guid: bfa5ed9e4a91248a1bddcb10f144aa48, type: 3}
+  - {fileID: 21300000, guid: 52f7611f912b64e1f8e2eac66ceefe27, type: 3}
+  - {fileID: 21300000, guid: 82ca436f804654b07b19e5a48f7e4507, type: 3}
+  - {fileID: 21300000, guid: 8570d8df3687a4f41b4387f8cb45dd0d, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - decor_4
+  - stone_3
+  - stone_1
+  - road_7
+  - road_1
+  - decor_3
+  - road_4
+  - main_bg
+  - road_2
+  - decor_6
+  - decor_2
+  - road_10
+  - dot
+  - stone_2
+  - road_9
+  - stone_8
+  - stone_5
+  - lake_3
+  - road_5
+  - stone_4
+  - decor_5
+  - lake_1
+  - road_8
+  - stone_7
+  - stone_6
+  - decor_1
+  - land
+  - road_3
+  - road_6
+  - lake_2
+  - decor_7
+  m_Tag: Lava
+  m_IsVariant: 0

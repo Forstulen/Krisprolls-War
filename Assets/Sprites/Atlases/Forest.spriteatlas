@@ -1,0 +1,150 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Forest
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    - serializedVersion: 3
+      m_BuildTarget: Android
+      m_MaxTextureSize: 512
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 1
+    - serializedVersion: 3
+      m_BuildTarget: iPhone
+      m_MaxTextureSize: 512
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 1
+    - serializedVersion: 3
+      m_BuildTarget: Standalone
+      m_MaxTextureSize: 512
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 1
+    - serializedVersion: 3
+      m_BuildTarget: WebGL
+      m_MaxTextureSize: 1024
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 1
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: ef9c5d6a752b24792a7fb5a0e4c9af08, type: 3}
+    totalSpriteSurfaceArea: 502080
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 1b31557182de54f6c9a809c260b9bd12, type: 3}
+  - {fileID: 21300000, guid: 24f8b422a9e654ff4b6c2bc03e2b25c5, type: 3}
+  - {fileID: 21300000, guid: ec50e9627e603437aa6373f61ef9aee5, type: 3}
+  - {fileID: 21300000, guid: b00c6fc23bce04b398e6c21d647dbf71, type: 3}
+  - {fileID: 21300000, guid: a8806614e1efe4bc1a5004c785aae6c5, type: 3}
+  - {fileID: 21300000, guid: c55dfc640fb634509a38fc25a1e151f1, type: 3}
+  - {fileID: 21300000, guid: 725c74944a9594f7cae3cc6736813eef, type: 3}
+  - {fileID: 21300000, guid: 90a1e8558e1104d62a8884127e2d40ed, type: 3}
+  - {fileID: 21300000, guid: feaeb26577b0d465886bde68b941c005, type: 3}
+  - {fileID: 21300000, guid: a218b5a536e6440e1b0dddf35ca44a8b, type: 3}
+  - {fileID: 21300000, guid: 472b33c54f47444628b5230ce551d531, type: 3}
+  - {fileID: 21300000, guid: 043f74c5932204a2aa0a74d17fa761f6, type: 3}
+  - {fileID: 21300000, guid: 8d98d986494d147b28fb98922dcfcadd, type: 3}
+  - {fileID: 21300000, guid: b9df07d633a2d426a9f95d32f96e36d9, type: 3}
+  - {fileID: 21300000, guid: 86722ce6d999a42248eec35436a2689e, type: 3}
+  - {fileID: 21300000, guid: 9ba1c037585f0423aac58468c6c9ffcf, type: 3}
+  - {fileID: 21300000, guid: 3785e9396d2fc4c97a6f3e87a1f8c974, type: 3}
+  - {fileID: 21300000, guid: 461601c93caa148e3a23f1426fa85825, type: 3}
+  - {fileID: 21300000, guid: b5e1442a18b474c42a6181dfa483a6cf, type: 3}
+  - {fileID: 21300000, guid: 548ce83c915414f5989df21fb578b470, type: 3}
+  - {fileID: 21300000, guid: 85ae846c49951431b8d7ada61b89cac3, type: 3}
+  - {fileID: 21300000, guid: 464d75bd767eb4cfda5429d5a948cd2e, type: 3}
+  - {fileID: 21300000, guid: 4ea9b00e0a7094a81a997fa18aeb3f36, type: 3}
+  - {fileID: 21300000, guid: 8b46f56f5f96c4f7caf718550d7444ae, type: 3}
+  - {fileID: 21300000, guid: 38c7c8cf8a2e24e1ab9321187176c372, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - road_8
+  - lake
+  - road_3
+  - road_2
+  - road_6
+  - decor_1
+  - bush_3
+  - road_1
+  - decor_3
+  - road_10
+  - bush_2
+  - decor_4
+  - road_7
+  - tree_1
+  - dot
+  - road_4
+  - road_9
+  - decor_5
+  - stone
+  - land
+  - tree_2
+  - main_bg
+  - decor_2
+  - road_5
+  - bush_1
+  m_Tag: Forest
+  m_IsVariant: 0
