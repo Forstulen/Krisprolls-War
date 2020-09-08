@@ -149,7 +149,7 @@ MonoBehaviour:
   EmptyLevelSprite: {fileID: 21300000, guid: 3134dfb16e89d41f4b6c672a310a632d, type: 3}
   FilledLevelSprite: {fileID: 21300000, guid: b19cf34f3a79445ebb0ee03e747d593f, type: 3}
   SortingLayerName: Foreground
-  SortingLayer: 10
+  SortingLayer: 100
 --- !u!1 &1139883180360218
 GameObject:
   m_ObjectHideFlags: 0

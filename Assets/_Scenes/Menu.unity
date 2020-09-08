@@ -1262,7 +1262,7 @@ PrefabInstance:
       propertyPath: m_Text
       value: 'Since their only weakness was the poison, Lord Vorsespt used his magic
         to immunize his best henchmen, but there was a counterpart: they have less
-        endurance than the others because of the poison that runs in their veins.'
+        endurance than the others because of the poison that runs through their veins.'
       objectReference: {fileID: 0}
     - target: {fileID: 114691626878395010, guid: 771d0845ee0ef437391bc98049cc0e84,
         type: 3}

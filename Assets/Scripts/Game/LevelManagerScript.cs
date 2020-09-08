@@ -23,7 +23,7 @@ namespace TowerDefense
 
     public enum SpecialWave
     {
-        NUCLEAR = 0,
+        DRAGON = 0,
         NONE
     }
 
@@ -1396,7 +1396,7 @@ namespace TowerDefense
             }, FollowingPath.MAIN_PATH, 1.0f, 9, 15);
 
             WaveModel wave11 = new WaveModel(new EnemyType[] {
-            }, FollowingPath.MAIN_PATH, 1.0f, 10, 0, SpecialWave.NUCLEAR);
+            }, FollowingPath.MAIN_PATH, 1.0f, 10, 0, SpecialWave.DRAGON);
 
             WaveModel wave12 = new WaveModel(new EnemyType[] {
                 EnemyType.LIGHT_ENEMY,

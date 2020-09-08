@@ -91,7 +91,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: b969994c43d794a2695d440e232228c6, type: 3}
-    totalSpriteSurfaceArea: 737986
+    totalSpriteSurfaceArea: 999107
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -106,6 +106,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 9139652353934448f8e764608bc89213, type: 3}
   - {fileID: 21300000, guid: 35597a43b61ad4660a25eae03e4f62fa, type: 3}
   - {fileID: 21300000, guid: 8837d653f144b43fbae34f382bcc6570, type: 3}
+  - {fileID: 21300000, guid: 68591f735dd06452694211cd38c548e8, type: 3}
   - {fileID: 21300000, guid: 273684f3cda9744e2b58b5a6bc34bc0e, type: 3}
   - {fileID: 21300000, guid: 458373554d48b491dab3b48cbc61ba19, type: 3}
   - {fileID: 21300000, guid: d6327c757493b46a7859780adc61f303, type: 3}
@@ -142,6 +143,7 @@ SpriteAtlas:
   - iceTowerButton
   - OptionsPanel
   - statutBackground
+  - Serpentinedragon_top
   - breakarmorButton
   - titre
   - goldIcon
