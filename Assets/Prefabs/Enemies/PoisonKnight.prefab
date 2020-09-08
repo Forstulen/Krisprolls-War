@@ -10569,5 +10569,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CanvasName: GoldCanvas
   objectToFollow: {fileID: 224453915513947570}
-  localOffset: {x: -3, y: 18, z: 0}
+  localOffset: {x: 0, y: 0.95, z: 0}
   screenOffset: {x: 0, y: 0, z: 0}

@@ -117,7 +117,6 @@ namespace TowerDefense
                 EnemyType.LIGHT_ENEMY,
                 EnemyType.LIGHT_ENEMY,
                 EnemyType.LIGHT_ENEMY,
-                EnemyType.LIGHT_ENEMY,
             }, FollowingPath.MAIN_PATH, 0.5f, 3, 50);
 
             WaveModel wave5 = new WaveModel(new EnemyType[] {

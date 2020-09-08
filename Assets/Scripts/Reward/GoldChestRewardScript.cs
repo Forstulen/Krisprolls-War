@@ -24,7 +24,7 @@ namespace TowerDefense
 
             _renderer.color = new Color(0, 0, 0, 0);
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.4f);
 
             gameObject.SetActive(false);
 
